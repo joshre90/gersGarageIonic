@@ -2,15 +2,27 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+/*   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }, */
   {
     path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+  },
+ /*  {
+    path: 'user-services',
+    loadChildren: () => import('./pages/user-services/user-services.module').then( m => m.UserServicesPageModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: 'bookings',
+    loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
+  }, */
 ];
 
 @NgModule({
@@ -19,4 +31,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
