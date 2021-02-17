@@ -27,6 +27,19 @@ export class MenuPage implements OnInit {
     }
   ];
 
+  options  = [ 
+    {
+      title: 'Profile',
+      url: '/menu/profile',
+      icon: 'person-circle'
+    }, 
+    {
+      title: 'Logout',
+      url: '/menu/login',
+      icon: 'log-out'
+    }
+  ];
+
   selectedPath = '';
 
   constructor(private router: Router) {
