@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPage implements OnInit {
 
+  eventSource = [];
+  viewTitle: string;
+ 
+  calendar = {
+    mode: 'month',
+    currentDate: new Date(),
+  };
+ 
+  selectedDate: Date;
+
   constructor() { }
 
   ngOnInit() {
