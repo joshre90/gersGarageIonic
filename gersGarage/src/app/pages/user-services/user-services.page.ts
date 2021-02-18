@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-user-services',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserServicesPage implements OnInit {
 
-  constructor() { }
+  constructor(private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
+  }
+
+
+  logOut(){
+    this.tokenStorage.signOut();
+    //isCar=true;
   }
 
 }

@@ -8,7 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   }, */
   {
-    path: '',
+    path: 'menu',
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
   },
   {

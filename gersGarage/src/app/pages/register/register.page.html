@@ -6,4 +6,39 @@
 
 <ion-content>
 
+  <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input type="text" formControlName="First_Name"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.First_Name.errors?.required">
+      Name is required.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input type="text" formControlName="Last_Name"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input maxlength="10" type="text" formControlName="Phone"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="Email"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="Password"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="button" (click)="onSubmit()" [disabled]="!credentialsForm.valid">Register</ion-button>
+ 
+    <div class="alert alert-warning" *ngIf="isSignUpFailed">
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+  </form>
+  <ion-button (click)="goToLogin()">Login</ion-button>
 </ion-content>

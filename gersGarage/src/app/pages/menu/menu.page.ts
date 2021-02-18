@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
+import { Functions } from '../../_helper/functions'
+import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-menu',
@@ -32,23 +34,33 @@ export class MenuPage implements OnInit {
       title: 'Profile',
       url: '/menu/profile',
       icon: 'person-circle'
-    }, 
-    {
-      title: 'Logout',
-      url: '/menu/login',
-      icon: 'log-out'
-    }
+    } 
+    // {
+    //   title: 'Logout',
+    //   url: '/menu/login',
+    //   icon: 'log-out'
+    // }
   ];
 
   selectedPath = '';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private tokenStorage: TokenStorageService) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath=event.url;
     });
+    //this.functions.logOut()
    }
   
   ngOnInit() {
   }
+
+  logOut(){
+    this.tokenStorage.signOut();
+ }
+
+
+  
+  
+
 
 }
