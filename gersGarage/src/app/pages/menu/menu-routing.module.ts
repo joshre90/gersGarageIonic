@@ -25,12 +25,18 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
       },
+      {
+        path:'',
+        redirectTo:'/menu/user-services',
+        pathMatch: 'full'
+      }
     ]
   },
-  {
+  /* {
     path:'',
-    redirectTo:'/menu/user-services'
-  }
+    redirectTo:'/menu/user-services',
+    pathMatch: 'full'
+  } */
 ];
 
 @NgModule({

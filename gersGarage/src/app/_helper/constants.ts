@@ -23,7 +23,7 @@ export class Constants {
         this.userId = this.tokenStorage.getUser().id;
     }
         // Function to get vehicles per user
-       /*  checkIfCarsExist(){
+        checkIfCarsExist(){
         this.userService.getVehicleList(this.tokenStorage.getUser().id).subscribe(data => {
                 this.vehicleList = JSON.parse(data);
                 //console.log('Num of vehicles: ',this.vehicleList.length)
@@ -72,7 +72,7 @@ export class Constants {
             //console.log(err.error);
         }
     );
-    } */
+    }
 
 
 }

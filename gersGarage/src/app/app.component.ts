@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
-      this.router.navigate(['menu/user-services']);
+      this.router.navigate(['menu']);
     }else {
       this.router.navigate(['login']);
     }

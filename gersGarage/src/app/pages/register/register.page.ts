@@ -30,7 +30,7 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit(): void {
-    //this.form=this.credentialsForm.value;
+    //console.log(this.credentialsForm.value);
     this.authService.register(this.credentialsForm.value).subscribe(
       data => {
         console.log(data);
@@ -43,6 +43,7 @@ export class RegisterPage implements OnInit {
         this.errorMessage = err.error.message;
         console.log(this.errorMessage);
         this.isSignUpFailed = true;
+        console.log(this.isSignUpFailed);
       }
     );
   }
