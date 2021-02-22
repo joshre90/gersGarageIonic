@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'cal-modal',
     loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
   },
+  {
+    path: 'vehicle-register',
+    loadChildren: () => import('./pages/vehicle-register/vehicle-register.module').then( m => m.VehicleRegisterPageModule)
+  },
  /*  {
     path: 'user-services',
     loadChildren: () => import('./pages/user-services/user-services.module').then( m => m.UserServicesPageModule)

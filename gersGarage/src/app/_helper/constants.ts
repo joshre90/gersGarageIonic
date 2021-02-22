@@ -24,7 +24,7 @@ export class Constants {
     }
         // Function to get vehicles per user
         checkIfCarsExist(){
-        this.userService.getVehicleList(this.tokenStorage.getUser().id).subscribe(data => {
+        this.userService.getUserVehicleList(this.tokenStorage.getUser().id).subscribe(data => {
                 this.vehicleList = JSON.parse(data);
                 //console.log('Num of vehicles: ',this.vehicleList.length)
                 if (this.vehicleList.length > 0) {

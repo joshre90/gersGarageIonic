@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
-import { Functions } from '../../_helper/functions'
 import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({

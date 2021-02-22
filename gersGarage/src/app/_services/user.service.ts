@@ -13,6 +13,7 @@ export class UserService {
  
   constructor(private http: HttpClient) { }
 
+  //Test addresses
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + 'test/all', { responseType: 'text' });
   }
@@ -31,35 +32,42 @@ export class UserService {
 
 
   ///////////GETS/////////////
-
-  /////////////////GETS/////////////////////
+  //Function to get the list of engine types
   getEngineList(): Observable<any> {
         return this.http.get(API_URL + 'user/engine', { responseType: 'text' });
       }
 
+  //Function to get the list of vehicle makes
   getMakeList(): Observable<any> {
         return this.http.get(API_URL + 'user/makes', { responseType: 'text' });
       }
-
+  
+  //Function to get the vehicle type list
   getVehicleTypeList(): Observable<any> {
         return this.http.get(API_URL + 'user/vehicle-type', { responseType: 'text' });
       }
 
+  //Function to get the type of service
   getServiceType():Observable<any> {
         return this.http.get(API_URL + 'user/service-type', { responseType: 'text' });
   }
-  getVehicleList(id): Observable<any> {
+
+  //Function to get the list of vehicles registered by a particular user
+  getUserVehicleList(id): Observable<any> {
     return this.http.get(`${API_URL}user/vehicle-list/${id}`, { responseType: 'text' });
   }
 
+  //Function to get the list of services of a particular user
   getServiceHistory(id): Observable<any> {
     return this.http.get(`${API_URL}user/history/${id}`, { responseType: 'text' });
   }
 
+  //Function to get the list of engine types
   getServiceHistoryByDate(start,end): Observable<any> {
     return this.http.get(`${API_URL}user/bookings/${start}/${end}`, { responseType: 'text' });
   }
 
+  //Function to get the list of mechanics working at the garage
   getMechanicList():Observable<any> {
     return this.http.get(`${API_URL}user/mechanics`, { responseType: 'text' });
   }
@@ -68,7 +76,6 @@ export class UserService {
   updateBookingStatusMechanic(booking):Observable<any> {
     return this.http.put(`${API_URL}user/update-booking/${booking.id}/${booking.Mechanic}/${booking.Status}`, { responseType: 'text' });
   }
-  
 
 
    //////////POST/////////////

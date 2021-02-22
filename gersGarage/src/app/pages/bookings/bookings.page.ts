@@ -211,7 +211,7 @@ import { Constants } from '../../_helper/constants';
             buttons: [{
                 text: 'Okay',
                 handler: () => {
-                    this.route.navigate(['/tabs/tab1']);
+                    this.route.navigate(['/menu/user-services']);
                    // console.log('Confirm Okay');
                 }
             }],
@@ -230,7 +230,7 @@ import { Constants } from '../../_helper/constants';
             buttons: [{
                 text: 'OK',
                 handler: () => {
-                    this.route.navigate(['/tabs/tab1']);
+                    this.route.navigate(['/menu/user-services']);
                 }
             }]
         });
