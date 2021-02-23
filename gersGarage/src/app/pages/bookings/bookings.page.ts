@@ -25,7 +25,7 @@ import { Constants } from '../../_helper/constants';
     ionicForm: FormGroup;
     bookingDate = new Date();
     dateOther = '';
-    isdata = [];
+    //isdata = [];
     slotpicker: string[] = ['8:00-10:00', '10:30-12:30', '13:00-15:00', '15:30-17:30'];
     slot = '';
     service_list = [];
@@ -40,11 +40,13 @@ import { Constants } from '../../_helper/constants';
         @Inject(LOCALE_ID) private locale: string, 
         private modalCtrl: ModalController, 
         private route: Router, 
-        public isVehicle: Constants, 
+        public database: Constants, 
         private userService: UserService) {}
+
+
     ionViewDidEnter() {
-       // console.log('Does user has registerd vehicle?: ',this.isVehicle.registerState)
-        if (!this.isVehicle.registerState) {
+       // console.log('Does user has registerd vehicle?: ',this.database.registerState)
+        if (!this.database.registerState) {
             this.presentAlertConfirm()
         } else {
             this.populateCarArray();
@@ -57,14 +59,12 @@ import { Constants } from '../../_helper/constants';
     }
     ngOnInit() {
        // console.log(this.bookingDate)
-        //console.log('Slots',this.isVehicle.hours);
+        //console.log('Slots',this.database.hours);
 
         //Getting the list of Service Type
         this.userService.getServiceType().subscribe(data => {
-            let incoming = JSON.parse(data);
-            for (var i in incoming) {
-                this.service_list.push(incoming[i].name);
-            }
+            this.service_list = JSON.parse(data);
+            //console.log('Service: ',this.service_list);
         }, err => {
             this.service_list = JSON.parse(err.error).message;
         });
@@ -72,10 +72,7 @@ import { Constants } from '../../_helper/constants';
 		
 		///Ionic reactive form
 		this.ionicForm = this.formBuilder.group({
-            First_name: ['', [Validators.required, Validators.minLength(3)]],
-            Last_name: ['', [Validators.required, Validators.minLength(4)]],
-            Phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-            Type_service: ['', [Validators.required]],
+            Service_type: ['', [Validators.required]],
             Comments: ['', [Validators.required]],
             Status: ['Booked'],
             Date: [this.dateOther, [Validators.required]],
@@ -90,10 +87,10 @@ import { Constants } from '../../_helper/constants';
             return false;
         } else {
             //console.log(this.ionicForm.value),
-                this.isdata = this.ionicForm.value,
-            this.userService.postBooking(this.isdata).subscribe(data => {
+            //this.isdata = this.ionicForm.value,
+            this.userService.postBooking(this.ionicForm.value).subscribe(data => {
                 this.presentAlert();
-                this.isVehicle.serviceHistoryList();
+                this.database.serviceHistoryList();
                 this.ionicForm.reset();
             }, err => {
 				this.errorMessage = err.error.message;
@@ -113,9 +110,9 @@ import { Constants } from '../../_helper/constants';
             }, {
                 text: 'Confirm',
                 handler: (value: any) => {
-                   // console.log('V', value);
-                    this.slot = value.Slot.text;
-                    this.convertHourstoSlot(this.slot);
+                   console.log('V', value);
+                    //this.slot = value.Slot.text;
+                    this.convertHourstoSlot(value.Slot.text);
                 }
             }],
             columns: [{
@@ -127,6 +124,7 @@ import { Constants } from '../../_helper/constants';
         picker.present()
        // console.log(picker);
     }
+
     getColumnOptions() {
         let options = [];
         this.slotpicker.forEach(x => {
@@ -156,14 +154,14 @@ import { Constants } from '../../_helper/constants';
         //console.log(this.ionicForm.get('Date'));
     }
     populateCarArray() {
-        for (const i in this.isVehicle.vehicleList) {
-            //console.log(this.isVehicle.vehicleList[i]._id.Make);
+        for (const i in this.database.vehicleList) {
+            //console.log(this.database.vehicleList[i]['_id']['Make']);
+            //console.log(this.database.vehicleList[i]);
             this.car.push({
-                name: this.isVehicle.vehicleList[i]['_id']['Make'],
-                id_vehicle: this.isVehicle.vehicleList[i]['_id']['id_vehicle']
+                name: this.database.vehicleList[i]['_id']['Make'],
+                id_vehicle: this.database.vehicleList[i]['_id']['id_vehicle']
             })
         }
-       // console.log(this.car);
     }
 
     //calendar call
@@ -230,7 +228,7 @@ import { Constants } from '../../_helper/constants';
             buttons: [{
                 text: 'OK',
                 handler: () => {
-                    this.route.navigate(['/menu/user-services']);
+                    this.route.navigate(['/menu']);
                 }
             }]
         });

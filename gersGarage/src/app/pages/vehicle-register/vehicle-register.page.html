@@ -1,9 +1,55 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>vehicle-register</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbar_style">
+    <ion-buttons slot="start" ><ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Vehicle Details </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list-header >
+    <ion-label>
+      Please, fill the form to register a vehicle.
+    </ion-label>
+  </ion-list-header>
+  <!-- fill form -->
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate style="padding-right: 15px; padding-left: 15px">
+    <!--Licence form-->
+    <ion-item lines="full">
+      <ion-icon name="card" slot="start"></ion-icon>
+      <ion-label position="floating">Licence Number</ion-label>
+      <ion-input formControlName="Licence" placeholder="Enter licence number"type="text"></ion-input>
+    </ion-item>
+    <!--Engine Form-->
+    <ion-item>
+      <ion-icon name="construct" slot="start"></ion-icon>
+      <ion-label position="stacked">Engine</ion-label>
+      <ion-select class="ion-text-wrap select-text" [formGroup]="ionicForm" formControlName="engine" placeholder="Please select the engine type">
+        <ion-select-option *ngFor="let item of engine" [value]="item['_id']" >{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!--Vehicle type Form-->
+    <ion-item>
+      <ion-icon name="bus" slot="start"></ion-icon>
+      <ion-label position="stacked">Vehicle type</ion-label>
+      <ion-select class="ion-text-wrap select-text" [formGroup]="ionicForm" formControlName="vehicle_type" placeholder="Please select the vehicle type">
+        <ion-select-option *ngFor="let item of vehicleType" [value]="item['_id']">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+     <!--Make Form-->
+     <ion-item>
+      <ion-icon name="car" slot="start"></ion-icon>
+      <ion-label position="stacked">Make</ion-label>
+      <ion-select class="ion-text-wrap select-text" [formGroup]="ionicForm" formControlName="make" placeholder="Please select the vehicle make">
+        <ion-select-option *ngFor="let item of make" [value]="item['_id']">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+      <ion-row>
+        <ion-col>
+            <ion-button type="submit" expand="block" [disabled]=!ionicForm.valid>Submit</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
 
+      
 </ion-content>

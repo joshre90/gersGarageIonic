@@ -77,23 +77,28 @@ export class UserService {
     return this.http.put(`${API_URL}user/update-booking/${booking.id}/${booking.Mechanic}/${booking.Status}`, { responseType: 'text' });
   }
 
-
    //////////POST/////////////
     //Post a booking
     postBooking(bookingDetails): Observable<any> {
       console.log(bookingDetails);
       return this.http.post(API_URL + 'user/booking', {
-        //First_name: booking.First_name,
-        //Last_name: booking.Last_name,
-        //Phone: booking.Phone,
         Comments: bookingDetails.Comments,
         Status: bookingDetails.Status,
         Date : bookingDetails.Date,
-        Slot : bookingDetails.Slot,
-        Service: bookingDetails.Type_service,
+        Service: bookingDetails.Service_type,
         id_vehicle: bookingDetails.id_vehicle
     },{ responseType: 'text' });
   }
 
-
+    //Postting a Vehicle
+    postVehicle(vehicle): Observable<any> {
+      console.log(vehicle);
+      return this.http.post(API_URL + 'user/vehicle', {
+        Licence: vehicle.Licence,
+        id_user: vehicle.id_user,
+        engine: vehicle.engine,
+        vehicle_type: vehicle.vehicle_type,
+        make: vehicle.make,
+      },{ responseType: 'text' });
+  }
 }

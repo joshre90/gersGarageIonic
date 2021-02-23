@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 import { TokenStorageService } from '../../_services/token-storage.service';
 
+import { AlertController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -42,8 +45,9 @@ export class MenuPage implements OnInit {
   ];
 
   selectedPath = '';
+  userData = [];
 
-  constructor(private router: Router, private tokenStorage: TokenStorageService) {
+  constructor(private router: Router, private tokenStorage: TokenStorageService, private alertCtrl: AlertController,) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath=event.url;
     });
@@ -51,10 +55,32 @@ export class MenuPage implements OnInit {
    }
   
   ngOnInit() {
+    this.userData = this.tokenStorage.getUser();
+    //console.log(this.tokenStorage.getUser());
   }
 
+  //alert access tab 2
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+        header: 'Alert!',
+        cssClass: 'my-custom-class',
+        message: 'Are you sure you want to log out',
+        buttons: ['No',{
+            text: 'Yes',
+            handler: () => {
+              this.tokenStorage.signOut();
+                //this.router.navigate(['/menu/user-services']);
+               // console.log('Confirm Okay');
+            }
+        }],
+        backdropDismiss: false
+    });
+    await alert.present();
+}
+
   logOut(){
-    this.tokenStorage.signOut();
+    this.presentAlertConfirm();
+    //this.tokenStorage.signOut();
  }
 
 

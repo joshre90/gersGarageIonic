@@ -4,8 +4,8 @@
     <ion-content>
       
       <ion-list id="inbox-list">
-        <ion-list-header> Hi!</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+        <ion-list-header> Hi {{ userData.name }}! </ion-list-header>
+          <ion-note> {{ userData.email }} </ion-note>
 <!--         <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
           <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath === p.url" lines="none" detail="false">
             <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-outline'"></ion-icon>
@@ -30,7 +30,7 @@
         <ion-label>{{ opt.title }}</ion-label>
         </ion-item>
     </ion-menu-toggle>
-    <ion-item button (click)="logOut()">
+    <ion-item button (click)="logOut()" lines="none">
       <ion-icon slot="start" lines="none" ios="log-out-outline" md="log-out-outline"></ion-icon>
       <ion-label>Logout</ion-label>
       </ion-item>

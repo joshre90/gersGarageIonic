@@ -7,15 +7,62 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Make a booking</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong class="capitalize">Make a booking</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <section style= " padding-top: 15px; ">
+     <!-- fill form -->
+     <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate style="padding-right: 15px; padding-left: 15px">
+     <!--Calendar form-->
+     <ion-item lines="full">
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label>Date</ion-label>
+        <!-- <ion-datetime disabled formControlName="Date" [value]="dateOther"></ion-datetime> -->
+        <ion-label>
+           <ion-segment slot="start" position="floating">
+              <h3>{{dateOther | date:"dd-MMM-yyyy"}}</h3>
+           </ion-segment>
+        </ion-label>
+        <ion-button slot="end" fill= "clear"  (click)="openCalModal()">Cal</ion-button>
+     </ion-item>
+     <!--Picker Slot-->
+     <ion-item lines="full">
+        <ion-icon name="time" slot="start"></ion-icon>
+        <ion-label> Hour</ion-label>
+        <ion-label>
+           <ion-segment slot="start" position="floating">
+              <h3>{{slot}}</h3>
+           </ion-segment>
+        </ion-label>
+        <ion-button slot="end" fill= "clear" size="small" (click)="showPicker()">Slot</ion-button>
+     </ion-item>
+     <!--Type Service Form-->
+     <ion-item>
+        <ion-icon name="construct" slot="start"></ion-icon>
+        <ion-label position="stacked">Type Service</ion-label>
+        <ion-select class="ion-text-wrap select-text" [formGroup]="ionicForm" formControlName="Service_type">
+           <ion-select-option *ngFor="let item of service_list" [value]="item['_id']">{{item.name}}</ion-select-option>
+        </ion-select>
+     </ion-item>
+     <!--Car Form-->
+     <ion-item>
+        <ion-icon name="car" slot="start"></ion-icon>
+        <ion-label position="stacked">Select your car</ion-label>
+        <ion-select class="ion-text-wrap select-text" [formGroup]="ionicForm" formControlName="id_vehicle">
+           <ion-select-option *ngFor="let item of car" [value]="item.id_vehicle">{{item.name}}</ion-select-option>
+        </ion-select>
+     </ion-item>
+     <!--Comments form-->
+     <ion-item lines="full">
+        <ion-icon name="document-text" slot="start"></ion-icon>
+        <ion-label position="floating">Comments</ion-label>
+        <ion-input formControlName="Comments" placeholder="Enter comments" type="comments">
+        </ion-input>
+     </ion-item>
+     <!--Submit button-->
+     <ion-row>
+        <ion-col>
+           <ion-button type="submit" expand="block" [disabled]=!ionicForm.valid > Submit</ion-button>
+        </ion-col>
+     </ion-row>
+     </form>
+  </section>
 </ion-content>
