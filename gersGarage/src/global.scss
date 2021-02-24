@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,41 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.cal-modal {
+  --height: 60%;
+  --border-radius: 10px;
+  padding: 20px;
+  --ion-color-primary: #3880ff;
+}
+
+.my-custom-class {
+  --backdrop-opacity: 0.4;
+  --background: linear-gradient(
+    90deg,
+    rgb(123, 177, 139) 1%,
+    rgba(90, 223, 167, 0.747) 100%
+  );
+  .alert-message.sc-ion-alert-md,
+  .alert-message.sc-ion-alert-ios {
+    color: rgb(135, 62, 150);
+  }
+  .alert-button.sc-ion-alert-md,
+  .alert-button.sc-ion-alert-ios {
+    color: rgb(72, 1, 87);
+  }
+  .alert-title.sc-ion-alert-md,
+  .alert-title.sc-ion-alert-ios {
+    color: rgb(72, 1, 87);
+    text-align: center;
+  }
+  .alert-subtitle.sc-ion-alert-md,
+  .alert-subtitle.sc-ion-alert-ios {
+    color: rgb(72, 1, 87);
+    text-align: center;
+  }
+}
+
+// .toolbar_style {
+// 	--color: #05581a;
+// }

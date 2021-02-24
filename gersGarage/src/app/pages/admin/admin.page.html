@@ -7,15 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Admin</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong class="capitalize">Admin</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <section style="margin-top: 50%; margin-bottom: 50%; padding-right: 30px; padding-left: 30px">
+    <header style="font-size:160%; color: rgb(72, 1, 87)" class="ion-text-center">{{ content }}</header>
+    <ion-row>
+      <ion-col>
+        <ion-button class="my-button" type="button" full (click)="goToAdmin()" [disabled]="!isLoggedIn" color="success" expand="block">Click me</ion-button>
+      </ion-col>
+  </ion-row>
+</section>
 </ion-content>

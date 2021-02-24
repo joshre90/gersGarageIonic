@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../_services/user.service';
+import { Router } from '@angular/router';
+
+import { TokenStorageService } from '../../_services/token-storage.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,19 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPage implements OnInit {
 
-  eventSource = [];
-  viewTitle: string;
- 
-  calendar = {
-    mode: 'month',
-    currentDate: new Date(),
-  };
- 
-  selectedDate: Date;
+  content: string;
+  isLoggedIn = false;
 
-  constructor() { }
+  constructor(private userService: UserService, 
+    private route: Router, 
+    private tokenStorage: TokenStorageService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.userService.getAdminBoard().subscribe(
+      data => {
+        this.content = data;
+
+        setTimeout(() => {
+          this.isLoggedIn = true;
+      }, 300);
+
+        //this.isLoggedIn=true;
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
   }
 
+  goToAdmin(){
+    this.route.navigate(['menu']);
+  }
 }

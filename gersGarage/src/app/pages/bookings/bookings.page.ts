@@ -20,6 +20,11 @@ import { Constants } from '../../_helper/constants';
   export class BookingsPage implements OnInit {
 
     eventSource = []; 
+    calendar = {
+        mode: 'month',
+        currentDate: new Date(),
+      };
+
     @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
     ionicForm: FormGroup;
@@ -31,6 +36,8 @@ import { Constants } from '../../_helper/constants';
     service_list = [];
     car = [];
     errorMessage = '';
+
+    
   
     constructor(
         private tokenStorage: TokenStorageService, 

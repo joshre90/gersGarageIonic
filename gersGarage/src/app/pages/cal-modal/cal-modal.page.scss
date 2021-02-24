@@ -1,0 +1,35 @@
+:host ::ng-deep {
+  .monthview-container {
+    height: auto !important;
+  }
+
+  .event-detail-container {
+    display: none;
+  }
+}
+
+.center {
+  margin-top: 20px;
+  text-align: center;
+  display: block !important;
+}
+ion-button.cancel {
+  --background: #e95e28;
+}
+
+.top-title {
+  text-align: center;
+}
+
+.back {
+  padding-left: 10pt;
+}
+
+.forward {
+  padding-right: 10pt;
+}
+
+.toolbar_style {
+  --color: #05581a;
+  //text-align: center;
+}
