@@ -8,12 +8,100 @@
 </ion-header>
 
 <ion-content>
-  <section style="margin-top: 50%; margin-bottom: 50%; padding-right: 30px; padding-left: 30px">
-    <header style="font-size:160%; color: rgb(72, 1, 87)" class="ion-text-center">{{ content }}</header>
-    <ion-row>
-      <ion-col>
-        <ion-button class="my-button" type="button" full (click)="goToAdmin()" [disabled]="!isLoggedIn" color="success" expand="block">Click me</ion-button>
-      </ion-col>
-  </ion-row>
-</section>
+  <div *ngIf="!this.isLoggedIn" style="margin-top: 25%">
+     <ion-grid> 
+        <ion-row>
+           <ion-col class="ion-text-center">
+              <div><ion-icon class="notify-icon" name="ban" slot="start"></ion-icon></div>
+            </ion-col>
+      </ion-row>
+      <ion-row>
+         <ion-col><header style="font-size:160%" class="ion-text-center">{{ content }}</header></ion-col>
+      </ion-row>
+      </ion-grid>
+</div>
+<div *ngIf="this.isLoggedIn">
+ <h1 style="font-size:100%;" class="ion-text-center">Please select a date to list the bookings</h1>
+  <section style= " padding-right: 15px; padding-left: 15px">
+     <ion-item lines="none">
+        <ion-label>Booking Date</ion-label>
+        <ion-datetime (ionChange)="getDate($event)" displayFormat="MMM DD" [(ngModel)]="start"></ion-datetime>
+     </ion-item>
+     <ion-row>
+        <ion-col>
+           <ion-button class="my-button" type="button" full (click)="confirmDate()" expand="block">Confirm</ion-button>
+        </ion-col>
+     </ion-row>
+  </section>
+  <ion-item-divider></ion-item-divider>
+  <h2 style="font-size:100%" class="ion-text-center">Today's Bookings are:</h2>
+  <section  *ngIf="bookingsExisted" style= " padding-right: 15px; padding-left: 15px">
+     <ion-card *ngFor="let item of sortHistory" (click)="bookingDetails(item._id)" >
+     <ion-card-content style="padding-top:2px">
+        <ion-grid>
+           <ion-row>
+              <ion-col class="ion-text-start" style="padding:0">
+                 <h3>Status: {{item._id.Status}}</h3>
+              </ion-col>
+              <ion-col class="ion-text-end" style="padding:0">
+                 <h3>Hour: {{item._id.Date | date:'HH:mm'}}</h3>
+              </ion-col>
+           </ion-row>
+        </ion-grid>
+        <h1 style="padding-left:5px; color:black">{{item._id.Make}}</h1>
+        <ion-item>
+           <ion-icon name="man" slot="start"></ion-icon>
+           <ion-label>
+              <h3>Costumer: <strong>{{item._id.First_name}} {{item._id.Last_name}}</strong></h3>
+              <h4>Phone: <strong>{{item._id.Phone}}</strong></h4>
+           </ion-label>
+        </ion-item>
+        <ion-item>
+           <ion-icon name="car" slot="start"></ion-icon>
+           <ion-label>
+              <h4>Vehicle Type: <strong>{{item._id.Vehicle_type}}</strong></h4>
+              <h4>Engine: <strong>{{item._id.Engine}}</strong></h4>
+              <h4>Licence: <strong>{{item._id.Licence}}</strong></h4>
+           </ion-label>
+        </ion-item>
+        <ion-item >
+           <ion-icon name="construct" slot="start"></ion-icon>
+           <ion-label>
+              <h4>Service: <strong>{{item._id.Service_type}}</strong></h4>
+           </ion-label>
+        </ion-item>
+        <ion-item >
+           <ion-icon name="build" slot="start"></ion-icon>
+           <ion-label>
+              <h4>Mechanic: <strong>{{item._id.Mechanic}}</strong></h4>
+           </ion-label>
+        </ion-item>
+        <ion-item >
+         <ion-icon name="wallet" slot="start"></ion-icon>
+         <ion-label>
+            <h4>Total Cost: <strong>${{item._id.Price}}</strong></h4>
+         </ion-label>
+      </ion-item>
+        <ion-item >
+           <ion-icon name="chatbubble-ellipses" slot="start"></ion-icon>
+           <ion-label text-wrap>
+              <h4>Comments: </h4>
+              <h4><strong>{{item._id.Comments}}</strong></h4>
+           </ion-label>
+        </ion-item>
+     </ion-card-content>
+     </ion-card>
+  </section>
+  <section *ngIf="!bookingsExisted" style= " padding-right: 30px; padding-left: 30px">
+     <ion-card>
+        <ion-card-content>
+           <ion-item lines="none">
+              <ion-icon name="alert-circle-outline" slot="start"></ion-icon>
+              <h3><strong>There are no services booked today </strong></h3>
+           </ion-item>
+        </ion-card-content>
+     </ion-card>
+  </section>
+
+</div>
 </ion-content>

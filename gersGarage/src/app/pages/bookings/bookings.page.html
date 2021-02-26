@@ -12,7 +12,7 @@
      <!-- fill form -->
      <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate style="padding-right: 15px; padding-left: 15px">
      <!--Calendar form-->
-     <ion-item lines="full">
+     <ion-item>
         <ion-icon name="calendar" slot="start"></ion-icon>
         <ion-label>Date</ion-label>
         <!-- <ion-datetime disabled formControlName="Date" [value]="dateOther"></ion-datetime> -->
@@ -24,7 +24,7 @@
         <ion-button slot="end" fill= "clear"  (click)="openCalModal()">Cal</ion-button>
      </ion-item>
      <!--Picker Slot-->
-     <ion-item lines="full">
+     <ion-item>
         <ion-icon name="time" slot="start"></ion-icon>
         <ion-label> Hour</ion-label>
         <ion-label>

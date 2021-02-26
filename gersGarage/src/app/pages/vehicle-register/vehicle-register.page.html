@@ -15,7 +15,7 @@
   <!-- fill form -->
   <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate style="padding-right: 15px; padding-left: 15px">
     <!--Licence form-->
-    <ion-item lines="full">
+    <ion-item>
       <ion-icon name="card" slot="start"></ion-icon>
       <ion-label position="floating">Licence Number</ion-label>
       <ion-input formControlName="Licence" placeholder="Enter licence number"type="text"></ion-input>
@@ -37,7 +37,7 @@
       </ion-select>
     </ion-item>
      <!--Make Form-->
-     <ion-item>
+     <ion-item lines="full">
       <ion-icon name="car" slot="start"></ion-icon>
       <ion-label position="stacked">Make</ion-label>
       <ion-select class="ion-text-wrap select-text" [formGroup]="ionicForm" formControlName="make" placeholder="Please select the vehicle make">
